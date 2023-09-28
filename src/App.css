@@ -3,3 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+:root {
+    --color-black: #101010;
+    --color-background: #ffffff;
+    --color-white: #fefff5;
+    --color-secondary: #fff8bc;
+}
+body {
+    font-family: "Ubuntu", sans-serif;
+}
