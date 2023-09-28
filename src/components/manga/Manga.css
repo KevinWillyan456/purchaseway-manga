@@ -1,0 +1,10 @@
+.container-main .main .content .item {
+    position: relative;
+    width: 160px;
+    height: 220px;
+    border: 2px solid var(--color-black);
+    background-image: url("https://static3.mangalivre.net/capas/zEwfcCzNfElqgwy2MzwDJQ/7739/63aaf88b0eaf6_external_cover.jpg");
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+}

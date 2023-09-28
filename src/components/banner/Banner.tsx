@@ -2,7 +2,7 @@ import "./Banner.css";
 
 function Banner() {
     return (
-        <main className="container">
+        <main className="container-banner">
             <section className="banner">
                 <div className="title">
                     Conheça nosso espaço criado especialmente para ler mangás
