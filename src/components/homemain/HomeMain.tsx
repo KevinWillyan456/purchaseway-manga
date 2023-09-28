@@ -1,5 +1,5 @@
 import Manga from "../manga/Manga";
-import "./Main.css";
+import "./HomeMain.css";
 
 function Main() {
     return (
@@ -9,6 +9,17 @@ function Main() {
                     <div className="title-main">Lista dos Mangás</div>
 
                     <div className="content">
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
+                        <Manga />
                         <Manga />
                     </div>
                 </section>
