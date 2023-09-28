@@ -1,0 +1,99 @@
+.container-view {
+    width: 100%;
+    background: #202020;
+    position: relative;
+}
+.container-view .title-view {
+    color: var(--color-white);
+    font-size: 32px;
+    text-align: center;
+    padding: 40px 0;
+}
+.container-view .btn-voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.container-view .control-cap {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 140px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-white);
+}
+.container-view .control-cap .control-cap-left {
+    width: 30px;
+    height: 40px;
+    border-radius: 10px 0px 0px 10px;
+    background: #ff9736;
+    border: none;
+    cursor: pointer;
+}
+.container-view .control-cap .control-cap-info {
+    color: var(--color-black);
+    font-size: 16px;
+    cursor: pointer;
+}
+.container-view .control-cap .control-cap-right {
+    width: 30px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    background: #ff9736;
+    border: none;
+    cursor: pointer;
+}
+.container-view .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+.container-view .control-pag {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 180px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-white);
+}
+.container-view .control-pag .control-pag-left {
+    width: 30px;
+    height: 40px;
+    border-radius: 10px 0px 0px 10px;
+    background: #ff9736;
+    border: none;
+    cursor: pointer;
+}
+.container-view .control-pag .control-pag-info {
+    color: var(--color-black);
+    font-size: 16px;
+    cursor: pointer;
+}
+.container-view .control-pag .control-pag-right {
+    width: 30px;
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    background: #ff9736;
+    border: none;
+    cursor: pointer;
+}
+.container-view .space {
+    height: 40px;
+    width: 100%;
+    background-color: transparent;
+}
