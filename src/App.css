@@ -10,10 +10,11 @@ a {
 
 :root {
     --color-black: #101010;
-    --color-background: #ffffff;
-    --color-white: #fefff5;
+    --color-background: #fefff5;
+    --color-white: #ffffff;
     --color-secondary: #fff8bc;
 }
 body {
     font-family: "Ubuntu", sans-serif;
+    background-color: var(--color-background);
 }

@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+}
+.container .banner {
+    width: 1200px;
+    height: 260px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #000 0%, #3a3a3a 50%, #000 100%);
+    padding: 0 82px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container .title {
+    color: var(--color-white);
+    font-size: 40px;
+    width: 321px;
+}
+.container .cover {
+    pointer-events: none;
+}
