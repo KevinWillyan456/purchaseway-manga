@@ -1,0 +1,21 @@
+.rodape {
+    width: 100%;
+    height: 160px;
+    background: var(--color-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rodape .content-rodape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-white);
+}
+.rodape .content-rodape .title {
+    font-size: 32px;
+}
+.rodape .content-rodape .title-small {
+    font-size: 16px;
+}

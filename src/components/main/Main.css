@@ -1,5 +1,6 @@
 .container-main {
     width: 100%;
+    margin-bottom: 80px;
 }
 .container-main .main {
     max-width: 1200px;
