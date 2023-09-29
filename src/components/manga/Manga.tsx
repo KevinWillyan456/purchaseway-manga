@@ -1,11 +1,20 @@
 import "./Manga.css";
 
-function Manga() {
+interface MangaProps {
+    capa: string;
+    titulo: string;
+}
+
+function Manga({ capa, titulo }: MangaProps) {
     return (
-        <a href="/view" className="item">
-            <div className="title">
-                Ijiranaide, Nagatoro-san com mais episodios especiasis
-            </div>
+        <a
+            href="/view"
+            className="item"
+            style={{
+                backgroundImage: `url(${capa})`,
+            }}
+        >
+            <div className="title">{titulo}</div>
         </a>
     );
 }
