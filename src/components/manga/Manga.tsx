@@ -2,11 +2,11 @@ import "./Manga.css";
 
 function Manga() {
     return (
-        <div className="item">
+        <a href="/view" className="item">
             <div className="title">
                 Ijiranaide, Nagatoro-san com mais episodios especiasis
             </div>
-        </div>
+        </a>
     );
 }
 

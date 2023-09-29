@@ -19,8 +19,10 @@
     background: var(--color-white);
     color: var(--color-black);
     font-size: 16px;
-    border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .container-view .control-cap {
     position: absolute;
@@ -59,7 +61,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-bottom: 40px;
 }
 .container-view .control-pag {
     margin: 0 auto;
@@ -91,6 +92,21 @@
     background: #ff9736;
     border: none;
     cursor: pointer;
+}
+.container-view .proximo-capitulo {
+    width: 180px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-size: 16px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 20px;
+    border: none;
 }
 .container-view .space {
     height: 40px;

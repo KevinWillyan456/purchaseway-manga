@@ -4,7 +4,9 @@ function ViewMain() {
     return (
         <main className="container-view">
             <div className="title-view">Kimetsu no Yaiba</div>
-            <button className="btn-voltar">Voltar</button>
+            <a href="/" className="btn-voltar">
+                Voltar
+            </a>
             <div className="control-cap">
                 <button className="control-cap-left">{"<"}</button>
                 <div className="control-cap-info">CAP 1</div>
@@ -17,12 +19,14 @@ function ViewMain() {
                     alt=""
                 />
             </section>
-
+            <div className="space"></div>
             <div className="control-pag">
                 <button className="control-pag-left">{"<"}</button>
                 <div className="control-pag-info">Pág 1 de 55</div>
                 <button className="control-pag-right">{">"}</button>
             </div>
+
+            <button className="proximo-capitulo">Próximo Capítulo</button>
             <div className="space"></div>
         </main>
     );
