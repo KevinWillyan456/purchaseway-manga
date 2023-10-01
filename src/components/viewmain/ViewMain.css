@@ -61,6 +61,12 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.container-view .content img {
+    width: auto;
+    max-width: 80%;
 }
 .container-view .control-pag {
     margin: 0 auto;

@@ -1,12 +1,25 @@
+import { Link, useNavigate } from "react-router-dom";
 import "./ViewMain.css";
+import { useContext, useEffect } from "react";
+import { MangaContext } from "../../contexts/mangaContext";
 
 function ViewMain() {
+    const { manga } = useContext(MangaContext);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (manga._id === "") {
+            navigate("/");
+        }
+    }, [manga]);
+
     return (
         <main className="container-view">
             <div className="title-view">Kimetsu no Yaiba</div>
-            <a href="/" className="btn-voltar">
+            <Link to="/" className="btn-voltar">
                 Voltar
-            </a>
+            </Link>
             <div className="control-cap">
                 <button className="control-cap-left">{"<"}</button>
                 <div className="control-cap-info">CAP 1</div>
@@ -14,10 +27,10 @@ function ViewMain() {
             </div>
 
             <section className="content">
-                <img
-                    src="https://static2.mangalivre.net/avif/EykuBK-tIHIfLPdrLROegQ/_jF4tpv7SlIewFiTzPJbfw/m2024523/3364/86011/90754/03.jpg.avif"
-                    alt=""
-                />
+                {manga.capitulos.length > 0 &&
+                    manga.capitulos[0].paginas.map((pag) => (
+                        <img key={pag._id} src={pag.path} />
+                    ))}
             </section>
             <div className="space"></div>
             <div className="control-pag">

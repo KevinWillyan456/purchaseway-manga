@@ -1,26 +1,27 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
     return (
         <header className="cabecalho">
             <div className="content-cabecalho">
-                <a href="/" className="logo">
+                <Link to="/" className="logo">
                     <img src="/logo.png" alt="logo" />
-                </a>
+                </Link>
 
                 <nav>
                     <ul>
                         <li>
-                            <a href="/">Ínicio</a>
+                            <Link to="/">Ínicio</Link>
                         </li>
                         <li>
-                            <a href="/">Sobre</a>
+                            <Link to="/">Sobre</Link>
                         </li>
                         <li>
-                            <a href="/">Serviços</a>
+                            <Link to="/">Serviços</Link>
                         </li>
                         <li>
-                            <a href="/">Contato</a>
+                            <Link to="/">Contato</Link>
                         </li>
                     </ul>
                 </nav>

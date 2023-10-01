@@ -6,16 +6,18 @@ import axios from "axios";
 const baseURL = "http://localhost:3000/manga";
 
 interface IPagina {
+    _id: string;
     numero: number;
     path: string;
 }
 
 interface ICapitulo {
+    _id: string;
     numero: number;
-    pagina: IPagina[];
+    paginas: IPagina[];
 }
 
-interface IManga {
+export interface IManga {
     _id: string;
     capa: string;
     genero: string;
@@ -33,7 +35,7 @@ function Main() {
         });
     }, []);
 
-    if (!mangas) return null;
+    if (mangas.length <= 0) return null;
 
     return (
         <>
@@ -42,11 +44,7 @@ function Main() {
                     <div className="title-main">Lista dos Mangás</div>
                     <div className="content">
                         {mangas.map((manga) => (
-                            <Manga
-                                key={manga._id}
-                                capa={manga.capa}
-                                titulo={manga.titulo}
-                            />
+                            <Manga key={manga._id} manga={manga} />
                         ))}
                     </div>
                 </section>
