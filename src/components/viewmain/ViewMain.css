@@ -24,6 +24,22 @@
     align-items: center;
     justify-content: center;
 }
+.container-view .mode-view {
+    position: absolute;
+    left: 160px;
+    top: 20px;
+    width: 170px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+}
 .container-view .control-cap {
     position: absolute;
     top: 20px;
@@ -66,7 +82,7 @@
 }
 .container-view .content img {
     width: auto;
-    max-width: 80%;
+    max-width: 100%;
 }
 .container-view .control-pag {
     margin: 0 auto;
