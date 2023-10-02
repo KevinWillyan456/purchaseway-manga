@@ -25,12 +25,16 @@ function ViewMain() {
                 return;
             }
             setPage(page - 1);
+            setIsOpenSelectChapter(false);
+            setIsOpenSelectPage(false);
         }
         if (event == "right") {
             if (page >= manga.capitulos[chapter].paginas.length - 1) {
                 return;
             }
             setPage(page + 1);
+            setIsOpenSelectChapter(false);
+            setIsOpenSelectPage(false);
         }
     };
 
@@ -40,12 +44,18 @@ function ViewMain() {
                 return;
             }
             setChapter(chapter - 1);
+            setPage(0);
+            setIsOpenSelectChapter(false);
+            setIsOpenSelectPage(false);
         }
         if (event == "right") {
             if (chapter >= manga.capitulos.length - 1) {
                 return;
             }
             setChapter(chapter + 1);
+            setPage(0);
+            setIsOpenSelectChapter(false);
+            setIsOpenSelectPage(false);
         }
     };
 
@@ -111,7 +121,7 @@ function ViewMain() {
                                                 : ""
                                         }
                                     >
-                                        {`Cap. ${chapter + 1}`}
+                                        {`Cap. ${manga.numero}`}
                                     </div>
                                 </li>
                             ))}
@@ -123,7 +133,7 @@ function ViewMain() {
             <section className="content">
                 {!modeView ? (
                     manga.capitulos.length > 0 &&
-                    manga.capitulos[0]?.paginas.map((pag) => (
+                    manga.capitulos[chapter]?.paginas.map((pag) => (
                         <img key={pag._id} src={pag.path} />
                     ))
                 ) : (
@@ -198,9 +208,8 @@ function ViewMain() {
                     handleChapter("right");
                 }}
             >
-                {page >= manga.capitulos[chapter]?.paginas.length - 1 ||
-                (chapter >= manga.capitulos.length - 1 && !modeView)
-                    ? "FIM, Obrigado por ler"
+                {chapter >= manga.capitulos.length - 1
+                    ? "Capítulo Final"
                     : "Próximo Capítulo"}
             </button>
             <div className="space"></div>
