@@ -13,7 +13,7 @@ function ViewMain() {
 
     useEffect(() => {
         if (manga._id === "") {
-            navigate("/");
+            return navigate("/");
         }
     }, [manga]);
 
@@ -84,13 +84,13 @@ function ViewMain() {
             <section className="content">
                 {!modeView ? (
                     manga.capitulos.length > 0 &&
-                    manga.capitulos[0].paginas.map((pag) => (
+                    manga.capitulos[0]?.paginas.map((pag) => (
                         <img key={pag._id} src={pag.path} />
                     ))
                 ) : (
                     <img
-                        key={manga.capitulos[chapter].paginas[page]._id}
-                        src={manga.capitulos[chapter].paginas[page].path}
+                        key={manga.capitulos[chapter]?.paginas[page]._id}
+                        src={manga.capitulos[chapter]?.paginas[page].path}
                     />
                 )}
             </section>
@@ -106,7 +106,7 @@ function ViewMain() {
                         {"<"}
                     </button>
                     <div className="control-pag-info">{`Pág ${page + 1} de ${
-                        manga.capitulos[chapter].paginas.length
+                        manga.capitulos[chapter]?.paginas.length
                     }`}</div>
                     <button
                         className="control-pag-right"
@@ -125,7 +125,7 @@ function ViewMain() {
                     handleChapter("right");
                 }}
             >
-                {page >= manga.capitulos[chapter].paginas.length - 1 ||
+                {page >= manga.capitulos[chapter]?.paginas.length - 1 ||
                 (chapter >= manga.capitulos.length - 1 && !modeView)
                     ? "FIM, Obrigado por ler"
                     : "Próximo Capítulo"}

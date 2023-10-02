@@ -5,15 +5,18 @@ import "./index.css";
 import Home from "./pages/Home.tsx";
 import View from "./pages/View.tsx";
 import { MangaContextProvider } from "./contexts/mangaContext.tsx";
+import ErrorPage from "./pages/errorPage.tsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Home />,
+        errorElement: <ErrorPage />,
     },
     {
         path: "view",
         element: <View />,
+        errorElement: <ErrorPage/>
     },
 ]);
 
