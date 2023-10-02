@@ -35,17 +35,21 @@ function Main() {
         });
     }, []);
 
-    if (mangas.length <= 0) return null;
-
     return (
         <>
             <main className="container-main">
                 <section className="main">
                     <div className="title-main">Lista dos Mangás</div>
                     <div className="content">
-                        {mangas.map((manga) => (
-                            <Manga key={manga._id} manga={manga} />
-                        ))}
+                        {mangas.length > 0 ? (
+                            mangas.map((manga) => (
+                                <Manga key={manga._id} manga={manga} />
+                            ))
+                        ) : (
+                            <div className="content-no-result">
+                                Sem resultados
+                            </div>
+                        )}
                     </div>
                 </section>
             </main>

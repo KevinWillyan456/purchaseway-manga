@@ -8,6 +8,8 @@ function ViewMain() {
     const [chapter, setChapter] = useState(0);
     const [page, setPage] = useState(0);
     const [modeView, setModeView] = useState(false);
+    const [isOpenSelectChapter, setIsOpenSelectChapter] = useState(false);
+    const [isOpenSelectPage, setIsOpenSelectPage] = useState(false);
 
     const navigate = useNavigate();
 
@@ -47,6 +49,13 @@ function ViewMain() {
         }
     };
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 150,
+            behavior: "instant",
+        });
+    };
+
     return (
         <main className="container-view">
             <div className="title-view">{manga.titulo}</div>
@@ -70,7 +79,12 @@ function ViewMain() {
                 >
                     {"<"}
                 </button>
-                <div className="control-cap-info">{`CAP ${chapter + 1}`}</div>
+                <div
+                    className="control-cap-info"
+                    onClick={() => {
+                        setIsOpenSelectChapter(!isOpenSelectChapter);
+                    }}
+                >{`CAP ${chapter + 1}`}</div>
                 <button
                     className="control-cap-right"
                     onClick={() => {
@@ -79,6 +93,31 @@ function ViewMain() {
                 >
                     {">"}
                 </button>
+                {isOpenSelectChapter && (
+                    <div className="control-cap-content">
+                        <ul>
+                            {manga.capitulos.map((manga) => (
+                                <li key={manga._id}>
+                                    <div
+                                        onClick={() => {
+                                            setChapter(manga.numero - 1);
+                                            setIsOpenSelectChapter(
+                                                !isOpenSelectChapter
+                                            );
+                                        }}
+                                        className={
+                                            chapter + 1 === manga.numero
+                                                ? "selected"
+                                                : ""
+                                        }
+                                    >
+                                        {`Cap. ${chapter + 1}`}
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
 
             <section className="content">
@@ -101,21 +140,55 @@ function ViewMain() {
                         className="control-pag-left"
                         onClick={() => {
                             handlePage("left");
+                            scrollToTop();
                         }}
                     >
                         {"<"}
                     </button>
-                    <div className="control-pag-info">{`Pág ${page + 1} de ${
+                    <div
+                        className="control-pag-info"
+                        onClick={() => {
+                            setIsOpenSelectPage(!isOpenSelectPage);
+                        }}
+                    >{`Pág ${page + 1} de ${
                         manga.capitulos[chapter]?.paginas.length
                     }`}</div>
                     <button
                         className="control-pag-right"
                         onClick={() => {
                             handlePage("right");
+                            scrollToTop();
                         }}
                     >
                         {">"}
                     </button>
+                    {isOpenSelectPage && (
+                        <div className="control-pag-content">
+                            <ul>
+                                {manga.capitulos[chapter]?.paginas.map(
+                                    (manga) => (
+                                        <li key={manga._id}>
+                                            <div
+                                                onClick={() => {
+                                                    setPage(manga.numero - 1);
+                                                    setIsOpenSelectPage(
+                                                        !isOpenSelectPage
+                                                    );
+                                                }}
+                                                className={
+                                                    page + 1 === manga.numero
+                                                        ? "selected"
+                                                        : ""
+                                                }
+                                            >
+                                                {`Pag. ${manga.numero}`}
+                                            </div>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        </div>
+                    )}
                 </div>
             )}
 

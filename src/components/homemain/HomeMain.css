@@ -23,6 +23,13 @@
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 160px);
 }
+.container-main .main .content .content-no-result {
+    font-size: 20px;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: flex;
+    text-align: center;
+}
 .container-main .main .content .title {
     position: absolute;
     bottom: 0;

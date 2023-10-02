@@ -63,6 +63,11 @@
 .container-view .control-cap .control-cap-info {
     color: var(--color-black);
     font-size: 16px;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 .container-view .control-cap .control-cap-right {
@@ -72,6 +77,51 @@
     background: #ff9736;
     border: none;
     cursor: pointer;
+}
+.container-view .control-cap .control-cap-content {
+    animation: opacity-control-cap-content 200ms;
+    position: absolute;
+    top: 100%;
+    left: 30px;
+    width: 80px;
+    height: 200px;
+    border: 2px solid var(--color-black);
+    background-color: var(--color-white);
+    overflow: auto;
+}
+.container-view .control-cap .control-cap-content::-webkit-scrollbar {
+    width: 0;
+}
+@keyframes opacity-control-cap-content {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.container-view .control-cap .control-cap-content ul {
+    list-style-type: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.container-view .control-cap .control-cap-content ul li div {
+    transition: 200ms;
+    cursor: pointer;
+    width: 76px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-view .control-cap .control-cap-content ul li div:hover {
+    color: #ff9736;
+    background-color: var(--color-black);
+}
+.container-view .control-cap .control-cap-content ul li div.selected {
+    color: #ff9736;
+    background-color: var(--color-black);
 }
 .container-view .content {
     width: 100%;
@@ -85,6 +135,7 @@
     max-width: 100%;
 }
 .container-view .control-pag {
+    position: relative;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -105,6 +156,11 @@
 .container-view .control-pag .control-pag-info {
     color: var(--color-black);
     font-size: 16px;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 .container-view .control-pag .control-pag-right {
@@ -114,6 +170,51 @@
     background: #ff9736;
     border: none;
     cursor: pointer;
+}
+.container-view .control-pag .control-pag-content {
+    animation: opacity-control-pag-content 200ms;
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    width: 120px;
+    height: 300px;
+    border: 2px solid var(--color-black);
+    background-color: var(--color-white);
+    overflow: auto;
+}
+.container-view .control-pag .control-pag-content::-webkit-scrollbar {
+    width: 0;
+}
+@keyframes opacity-control-pag-content {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.container-view .control-pag .control-pag-content ul {
+    list-style-type: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.container-view .control-pag .control-pag-content ul li div {
+    transition: 200ms;
+    cursor: pointer;
+    width: 116px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-view .control-pag .control-pag-content ul li div:hover {
+    color: #ff9736;
+    background-color: var(--color-black);
+}
+.container-view .control-pag .control-pag-content ul li div.selected {
+    color: #ff9736;
+    background-color: var(--color-black);
 }
 .container-view .proximo-capitulo {
     width: 180px;
