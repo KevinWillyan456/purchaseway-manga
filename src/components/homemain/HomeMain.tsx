@@ -3,7 +3,7 @@ import Manga from "../manga/Manga";
 import "./HomeMain.css";
 import axios from "axios";
 
-const baseURL = "http://localhost:3000/manga";
+const baseURL = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
 interface IPagina {
     _id: string;
@@ -29,10 +29,16 @@ export interface IManga {
 function Main() {
     const [mangas, setMangas] = useState<IManga[]>([]);
 
+    const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
+
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
-            setMangas(response.data.mangas);
-        });
+        axios
+            .get(baseURL, {
+                headers: { Authorization: apiKey },
+            })
+            .then((response) => {
+                setMangas(response.data.mangas);
+            });
     }, []);
 
     return (
