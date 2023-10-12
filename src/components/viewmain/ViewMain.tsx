@@ -13,14 +13,11 @@ function ViewMain() {
     const { manga } = useContext(MangaContext);
     const [chapter, setChapter] = useState(0);
     const [page, setPage] = useState(0);
-    const [entries, setEntries] = useState<IEntries[]>([]);
     const [modeView, setModeView] = useState(false);
     const [isOpenSelectChapter, setIsOpenSelectChapter] = useState(false);
     const [isOpenSelectPage, setIsOpenSelectPage] = useState(false);
 
     const navigate = useNavigate();
-
-    // ==============
 
     const loadFromLocalStorage = (key: string) => {
         const item = localStorage.getItem(key);
@@ -55,7 +52,6 @@ function ViewMain() {
         const savedData: IEntries[] = loadFromLocalStorage("entries");
         const savedReadingMode: string = loadReadingMode();
         if (savedData) {
-            setEntries(savedData);
             setPage(
                 savedData.find((e) => {
                     return e.titulo == manga.titulo;
@@ -83,8 +79,6 @@ function ViewMain() {
             titulo: manga.titulo,
         });
     }, [page, chapter]);
-
-    // ==============
 
     useEffect(() => {
         if (manga._id === "") {
