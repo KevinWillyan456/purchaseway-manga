@@ -7,7 +7,7 @@
     color: var(--color-white);
     font-size: 32px;
     text-align: center;
-    padding: 40px 0;
+    padding: 100px 20px 40px 20px;
 }
 .container-view .btn-voltar {
     transition: 200ms;
@@ -252,4 +252,21 @@
     box-shadow: 0 0 3px #ff9736, 0 0 3px #ff9736, 0 0 5px #ff9736,
         0 0 5px #ff9736, 0 0 8px #ff9736, 0 0 8px #ff9736, 0 0 12px #ff9736,
         0 0 12px #ff9736;
+}
+@media (max-width: 900px) {
+    .container-view .mode-view {
+        right: 20px;
+        left: auto;
+    }
+    .container-view .control-cap {
+        top: 100px;
+        right: calc(50% - 140px / 2);
+    }
+    .container-view .title-view {
+        padding-top: 180px;
+        padding-bottom: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 20px;
+    }
 }

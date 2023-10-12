@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     {
         path: "view",
         element: <View />,
-        errorElement: <ErrorPage/>
+        errorElement: <ErrorPage />,
     },
 ]);
 

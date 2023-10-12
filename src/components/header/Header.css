@@ -26,14 +26,86 @@
 .cabecalho .content-cabecalho .logo {
     cursor: pointer;
 }
-.cabecalho .content-cabecalho nav ul {
+.cabecalho .content-cabecalho .nav-bar ul {
     display: flex;
     list-style-type: none;
     gap: 30px;
 }
-.cabecalho .content-cabecalho nav ul li a {
-    transition: 200ms;
+.cabecalho .content-cabecalho .nav-bar-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.cabecalho .content-cabecalho .nav-bar-mobile .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.cabecalho .content-cabecalho .nav-bar-mobile ul {
+    animation: animate-entrance 500ms;
+    height: 100%;
+    width: 160px;
+    background-color: #d8d8d8;
+    list-style-type: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+@keyframes animate-entrance {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+.cabecalho .content-cabecalho .nav-bar ul li a {
     color: var(--color-black);
     font-size: 16px;
     cursor: pointer;
+}
+.cabecalho .content-cabecalho .nav-bar-mobile ul li a {
+    color: var(--color-black);
+    font-size: 16px;
+    cursor: pointer;
+}
+.cabecalho .content-cabecalho .hamburger {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #ff9736;
+    background: var(--color-secondary);
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.cabecalho .content-cabecalho .hamburger div {
+    width: 30px;
+    height: 5px;
+    border-radius: 10px;
+    background: #ff9736;
+}
+@media (max-width: 900px) {
+    .cabecalho .content-cabecalho .nav-bar {
+        display: none;
+    }
+    .cabecalho .content-cabecalho .hamburger {
+        display: flex;
+    }
+    .cabecalho .content-cabecalho .nav-bar-mobile {
+        display: flex;
+    }
 }

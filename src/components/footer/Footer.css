@@ -19,3 +19,11 @@
 .rodape .content-rodape .title-small {
     font-size: 16px;
 }
+@media (max-width: 900px) {
+    .rodape .content-rodape .title {
+        font-size: 24px;
+    }
+    .rodape .content-rodape .title-small {
+        font-size: 12px;
+    }
+}

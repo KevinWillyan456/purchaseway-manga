@@ -45,3 +45,18 @@
 .container-main .main .content .title::-webkit-scrollbar {
     width: 0px;
 }
+@media (max-width: 900px) {
+    .container-banner .banner {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .container-banner .title {
+        font-size: 20px;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .container-main .main .title-main {
+        font-size: 20px;
+    }
+}
