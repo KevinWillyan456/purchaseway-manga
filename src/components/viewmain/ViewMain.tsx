@@ -3,15 +3,88 @@ import "./ViewMain.css";
 import { useContext, useEffect, useState } from "react";
 import { MangaContext } from "../../contexts/mangaContext";
 
+interface IEntries {
+    chapter: number;
+    page: number;
+    titulo: string;
+}
+
 function ViewMain() {
     const { manga } = useContext(MangaContext);
     const [chapter, setChapter] = useState(0);
     const [page, setPage] = useState(0);
+    const [entries, setEntries] = useState<IEntries[]>([]);
     const [modeView, setModeView] = useState(false);
     const [isOpenSelectChapter, setIsOpenSelectChapter] = useState(false);
     const [isOpenSelectPage, setIsOpenSelectPage] = useState(false);
 
     const navigate = useNavigate();
+
+    // ==============
+
+    const loadFromLocalStorage = (key: string) => {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : null;
+    };
+
+    const loadReadingMode = () => {
+        const item = localStorage.getItem("reading-mode");
+        return item ? JSON.parse(item) : null;
+    };
+
+    const saveToLocalStorage = (key: string, value: IEntries) => {
+        const existingData = loadFromLocalStorage(key) || [];
+        const index = existingData.findIndex(
+            (item: IEntries) => item.titulo === value.titulo
+        );
+
+        if (index !== -1) {
+            existingData[index] = { ...existingData[index], ...value };
+        } else {
+            existingData.push(value);
+        }
+
+        localStorage.setItem(key, JSON.stringify(existingData));
+    };
+
+    const saveReadingMode = (type: string) => {
+        localStorage.setItem("reading-mode", JSON.stringify(type));
+    };
+
+    useEffect(() => {
+        const savedData: IEntries[] = loadFromLocalStorage("entries");
+        const savedReadingMode: string = loadReadingMode();
+        if (savedData) {
+            setEntries(savedData);
+            setPage(
+                savedData.find((e) => {
+                    return e.titulo == manga.titulo;
+                })?.page || 0
+            );
+            setChapter(
+                savedData.find((e) => {
+                    return e.titulo == manga.titulo;
+                })?.chapter || 0
+            );
+        }
+        if (savedReadingMode && savedReadingMode == "vertical") {
+            setModeView(false);
+        } else {
+            setModeView(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!page && !chapter) return;
+
+        saveToLocalStorage("entries", {
+            chapter,
+            page,
+            titulo: manga.titulo,
+        });
+    }, [page, chapter]);
+
+    // ==============
 
     useEffect(() => {
         if (manga._id === "") {
@@ -42,6 +115,13 @@ function ViewMain() {
         if (event == "left") {
             if (chapter <= 0) {
                 return;
+            }
+            if (chapter <= 1) {
+                saveToLocalStorage("entries", {
+                    chapter: 0,
+                    page: 0,
+                    titulo: manga.titulo,
+                });
             }
             setChapter(chapter - 1);
             setPage(0);
@@ -76,6 +156,8 @@ function ViewMain() {
                 className="mode-view"
                 onClick={() => {
                     setModeView(!modeView);
+                    if (modeView) saveReadingMode("vertical");
+                    else saveReadingMode("horizontal");
                 }}
             >
                 {!modeView ? "Leitura Horizontal" : "Leitura Vertical"}
@@ -106,22 +188,31 @@ function ViewMain() {
                 {isOpenSelectChapter && (
                     <div className="control-cap-content">
                         <ul>
-                            {manga.capitulos.map((manga) => (
-                                <li key={manga._id}>
+                            {manga.capitulos.map((mangaMap) => (
+                                <li key={mangaMap._id}>
                                     <div
                                         onClick={() => {
-                                            setChapter(manga.numero - 1);
+                                            if (mangaMap.numero - 1 <= 1) {
+                                                saveToLocalStorage("entries", {
+                                                    chapter: 0,
+                                                    page: 0,
+                                                    titulo: manga.titulo,
+                                                });
+                                            }
+
+                                            setChapter(mangaMap.numero - 1);
+                                            setPage(0);
                                             setIsOpenSelectChapter(
                                                 !isOpenSelectChapter
                                             );
                                         }}
                                         className={
-                                            chapter + 1 === manga.numero
+                                            chapter + 1 === mangaMap.numero
                                                 ? "selected"
                                                 : ""
                                         }
                                     >
-                                        {`Cap. ${manga.numero}`}
+                                        {`Cap. ${mangaMap.numero}`}
                                     </div>
                                 </li>
                             ))}
@@ -176,22 +267,24 @@ function ViewMain() {
                         <div className="control-pag-content">
                             <ul>
                                 {manga.capitulos[chapter]?.paginas.map(
-                                    (manga) => (
-                                        <li key={manga._id}>
+                                    (mangaMap) => (
+                                        <li key={mangaMap._id}>
                                             <div
                                                 onClick={() => {
-                                                    setPage(manga.numero - 1);
+                                                    setPage(
+                                                        mangaMap.numero - 1
+                                                    );
                                                     setIsOpenSelectPage(
                                                         !isOpenSelectPage
                                                     );
                                                 }}
                                                 className={
-                                                    page + 1 === manga.numero
+                                                    page + 1 === mangaMap.numero
                                                         ? "selected"
                                                         : ""
                                                 }
                                             >
-                                                {`Pag. ${manga.numero}`}
+                                                {`Pag. ${mangaMap.numero}`}
                                             </div>
                                         </li>
                                     )
