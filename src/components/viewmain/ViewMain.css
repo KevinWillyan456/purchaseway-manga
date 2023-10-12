@@ -10,6 +10,7 @@
     padding: 40px 0;
 }
 .container-view .btn-voltar {
+    transition: 200ms;
     position: absolute;
     top: 20px;
     left: 20px;
@@ -53,6 +54,7 @@
     background: var(--color-white);
 }
 .container-view .control-cap .control-cap-left {
+    transition: 200ms;
     width: 30px;
     height: 40px;
     border-radius: 10px 0px 0px 10px;
@@ -71,6 +73,7 @@
     cursor: pointer;
 }
 .container-view .control-cap .control-cap-right {
+    transition: 200ms;
     width: 30px;
     height: 40px;
     border-radius: 0px 10px 10px 0px;
@@ -146,6 +149,7 @@
     background: var(--color-white);
 }
 .container-view .control-pag .control-pag-left {
+    transition: 200ms;
     width: 30px;
     height: 40px;
     border-radius: 10px 0px 0px 10px;
@@ -164,6 +168,7 @@
     cursor: pointer;
 }
 .container-view .control-pag .control-pag-right {
+    transition: 200ms;
     width: 30px;
     height: 40px;
     border-radius: 0px 10px 10px 0px;
@@ -217,6 +222,7 @@
     background-color: var(--color-black);
 }
 .container-view .proximo-capitulo {
+    transition: 200ms;
     width: 180px;
     height: 40px;
     border-radius: 10px;
@@ -235,4 +241,15 @@
     height: 40px;
     width: 100%;
     background-color: transparent;
+}
+.container-view .btn-voltar:hover,
+.container-view .mode-view:hover,
+.container-view .control-cap .control-cap-left:hover,
+.container-view .control-cap .control-cap-right:hover,
+.container-view .control-pag .control-pag-left:hover,
+.container-view .control-pag .control-pag-right:hover,
+.container-view .proximo-capitulo:hover {
+    box-shadow: 0 0 3px #ff9736, 0 0 3px #ff9736, 0 0 5px #ff9736,
+        0 0 5px #ff9736, 0 0 8px #ff9736, 0 0 8px #ff9736, 0 0 12px #ff9736,
+        0 0 12px #ff9736;
 }
