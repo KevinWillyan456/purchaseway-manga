@@ -68,7 +68,7 @@ function ViewMain() {
         } else {
             setModeView(true);
         }
-    }, []);
+    }, [manga.titulo]);
 
     useEffect(() => {
         if (!page && !chapter) return;
@@ -78,13 +78,14 @@ function ViewMain() {
             page,
             titulo: manga.titulo,
         });
-    }, [page, chapter]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page, chapter, manga.titulo]);
 
     useEffect(() => {
         if (manga._id === "") {
             return navigate("/");
         }
-    }, [manga]);
+    }, [manga, navigate]);
 
     const handlePage = (event: "left" | "right") => {
         if (event == "left") {

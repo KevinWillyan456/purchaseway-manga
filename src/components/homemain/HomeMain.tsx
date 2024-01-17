@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Manga from "../manga/Manga";
 import "./HomeMain.css";
 import axios from "axios";
+import Error from "../loadingAndError/Error";
+import Loading from "../loadingAndError/Loading";
 
-const baseURL = import.meta.env.VITE_REACT_APP_BACKEND_URL;
+const baseURL = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/manga`;
 
 interface IPagina {
     _id: string;
@@ -28,6 +30,7 @@ export interface IManga {
 
 function Main() {
     const [mangas, setMangas] = useState<IManga[]>([]);
+    const [error, setError] = useState<boolean>(false);
 
     const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 
@@ -38,8 +41,9 @@ function Main() {
             })
             .then((response) => {
                 setMangas(response.data.mangas);
-            });
-    }, []);
+            })
+            .catch(() => setError(true));
+    }, [apiKey]);
 
     return (
         <>
@@ -51,9 +55,11 @@ function Main() {
                             mangas.map((manga) => (
                                 <Manga key={manga._id} manga={manga} />
                             ))
+                        ) : error ? (
+                            <Error />
                         ) : (
                             <div className="content-no-result">
-                                Sem resultados
+                                <Loading />
                             </div>
                         )}
                     </div>
