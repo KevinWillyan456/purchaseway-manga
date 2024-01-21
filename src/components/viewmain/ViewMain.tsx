@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./ViewMain.css";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { MangaContext } from "../../contexts/mangaContext";
 
 interface IEntries {
@@ -29,7 +29,7 @@ function ViewMain() {
         return item ? JSON.parse(item) : null;
     };
 
-    const saveToLocalStorage = (key: string, value: IEntries) => {
+    const saveToLocalStorage = useCallback((key: string, value: IEntries) => {
         const existingData = loadFromLocalStorage(key) || [];
         const index = existingData.findIndex(
             (item: IEntries) => item.titulo === value.titulo
@@ -42,7 +42,7 @@ function ViewMain() {
         }
 
         localStorage.setItem(key, JSON.stringify(existingData));
-    };
+    }, []);
 
     const saveReadingMode = (type: string) => {
         localStorage.setItem("reading-mode", JSON.stringify(type));
@@ -78,8 +78,7 @@ function ViewMain() {
             page,
             titulo: manga.titulo,
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page, chapter, manga.titulo]);
+    }, [page, chapter, manga.titulo, saveToLocalStorage]);
 
     useEffect(() => {
         if (manga._id === "") {
