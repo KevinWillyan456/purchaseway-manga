@@ -4,6 +4,12 @@ import { useState } from "react";
 
 function Header() {
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const [confirmClearHistory, setConfirmClearHistory] = useState(false);
+
+    const handleClearHistory = () => {
+        localStorage.clear();
+        window.location.reload();
+    };
 
     return (
         <header className="cabecalho">
@@ -25,6 +31,14 @@ function Header() {
                         </li>
                         <li>
                             <Link to="/">Contato</Link>
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => setConfirmClearHistory(true)}
+                                className="clear-history"
+                            >
+                                Limpar histórico
+                            </button>
                         </li>
                     </ul>
                 </nav>
@@ -79,10 +93,45 @@ function Header() {
                                     Contato
                                 </Link>
                             </li>
+                            <li>
+                                <button
+                                    onClick={() => {
+                                        setConfirmClearHistory(true);
+                                        setIsOpenModal(false);
+                                    }}
+                                    className="clear-history"
+                                >
+                                    Limpar histórico
+                                </button>
+                            </li>
                         </ul>
                     </nav>
                 )}
             </div>
+            {confirmClearHistory && (
+                <div className="confirm-clear-history-overflow">
+                    <div className="confirm-clear-history">
+                        <p>
+                            Tem certeza que deseja limpar o histórico de
+                            exibição?
+                        </p>
+                        <div className="buttons">
+                            <button
+                                className="cancel"
+                                onClick={() => setConfirmClearHistory(false)}
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                className="confirm"
+                                onClick={handleClearHistory}
+                            >
+                                Confirmar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </header>
     );
 }
