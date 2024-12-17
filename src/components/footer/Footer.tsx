@@ -1,4 +1,4 @@
-import "./Footer.css";
+import './Footer.css'
 
 function Footer() {
     return (
@@ -10,7 +10,7 @@ function Footer() {
                 </div>
             </div>
         </footer>
-    );
+    )
 }
 
-export default Footer;
+export default Footer

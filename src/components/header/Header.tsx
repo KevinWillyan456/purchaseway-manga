@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import "./Header.css";
-import { useState } from "react";
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import './Header.css'
 
 function Header() {
-    const [isOpenModal, setIsOpenModal] = useState(false);
-    const [confirmClearHistory, setConfirmClearHistory] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [confirmClearHistory, setConfirmClearHistory] = useState(false)
 
     const handleClearHistory = () => {
-        localStorage.clear();
-        window.location.reload();
-    };
+        localStorage.clear()
+        window.location.reload()
+    }
 
     return (
         <header className="cabecalho">
@@ -96,8 +96,8 @@ function Header() {
                             <li>
                                 <button
                                     onClick={() => {
-                                        setConfirmClearHistory(true);
-                                        setIsOpenModal(false);
+                                        setConfirmClearHistory(true)
+                                        setIsOpenModal(false)
                                     }}
                                     className="clear-history"
                                 >
@@ -133,7 +133,7 @@ function Header() {
                 </div>
             )}
         </header>
-    );
+    )
 }
 
-export default Header;
+export default Header

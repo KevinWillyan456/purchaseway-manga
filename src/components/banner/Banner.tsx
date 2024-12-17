@@ -1,4 +1,4 @@
-import "./Banner.css";
+import './Banner.css'
 
 function Banner() {
     return (
@@ -12,7 +12,7 @@ function Banner() {
                 </div>
             </section>
         </main>
-    );
+    )
 }
 
-export default Banner;
+export default Banner

@@ -1,144 +1,145 @@
-import { Link, useNavigate } from "react-router-dom";
-import "./ViewMain.css";
-import { useCallback, useContext, useEffect, useState } from "react";
-import { MangaContext } from "../../contexts/mangaContext";
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { MangaContext } from '../../contexts/mangaContext'
+import './ViewMain.css'
 
 interface IEntries {
-    chapter: number;
-    page: number;
-    titulo: string;
+    chapter: number
+    page: number
+    titulo: string
 }
 
 function ViewMain() {
-    const { manga } = useContext(MangaContext);
-    const [chapter, setChapter] = useState(0);
-    const [page, setPage] = useState(0);
-    const [modeView, setModeView] = useState(false);
-    const [isOpenSelectChapter, setIsOpenSelectChapter] = useState(false);
-    const [isOpenSelectPage, setIsOpenSelectPage] = useState(false);
+    const { manga } = useContext(MangaContext)
+    const [chapter, setChapter] = useState(0)
+    const [page, setPage] = useState(0)
+    const [modeView, setModeView] = useState(false)
+    const [isOpenSelectChapter, setIsOpenSelectChapter] = useState(false)
+    const [isOpenSelectPage, setIsOpenSelectPage] = useState(false)
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const loadFromLocalStorage = (key: string) => {
-        const item = localStorage.getItem(key);
-        return item ? JSON.parse(item) : null;
-    };
+        const item = localStorage.getItem(key)
+        return item ? JSON.parse(item) : null
+    }
 
     const loadReadingMode = () => {
-        const item = localStorage.getItem("reading-mode");
-        return item ? JSON.parse(item) : null;
-    };
+        const item = localStorage.getItem('reading-mode')
+        return item ? JSON.parse(item) : null
+    }
 
     const saveToLocalStorage = useCallback((key: string, value: IEntries) => {
-        const existingData = loadFromLocalStorage(key) || [];
+        const existingData = loadFromLocalStorage(key) || []
         const index = existingData.findIndex(
             (item: IEntries) => item.titulo === value.titulo
-        );
+        )
 
         if (index !== -1) {
-            existingData[index] = { ...existingData[index], ...value };
+            existingData[index] = { ...existingData[index], ...value }
         } else {
-            existingData.push(value);
+            existingData.push(value)
         }
 
-        localStorage.setItem(key, JSON.stringify(existingData));
-    }, []);
+        localStorage.setItem(key, JSON.stringify(existingData))
+    }, [])
 
     const saveReadingMode = (type: string) => {
-        localStorage.setItem("reading-mode", JSON.stringify(type));
-    };
+        localStorage.setItem('reading-mode', JSON.stringify(type))
+    }
 
     useEffect(() => {
-        const savedData: IEntries[] = loadFromLocalStorage("entries");
-        const savedReadingMode: string = loadReadingMode();
+        const savedData: IEntries[] = loadFromLocalStorage('entries')
+        const savedReadingMode: string = loadReadingMode()
         if (savedData) {
             setPage(
                 savedData.find((e) => {
-                    return e.titulo == manga.titulo;
+                    return e.titulo == manga.titulo
                 })?.page || 0
-            );
+            )
             setChapter(
                 savedData.find((e) => {
-                    return e.titulo == manga.titulo;
+                    return e.titulo == manga.titulo
                 })?.chapter || 0
-            );
+            )
         }
-        if (savedReadingMode && savedReadingMode == "vertical") {
-            setModeView(false);
+        if (savedReadingMode && savedReadingMode == 'vertical') {
+            setModeView(false)
         } else {
-            setModeView(true);
+            setModeView(true)
         }
-    }, [manga.titulo]);
+    }, [manga.titulo])
 
     useEffect(() => {
-        if (!page && !chapter) return;
+        if (!page && !chapter) return
 
-        saveToLocalStorage("entries", {
+        saveToLocalStorage('entries', {
             chapter,
             page,
             titulo: manga.titulo,
-        });
-    }, [page, chapter, manga.titulo, saveToLocalStorage]);
+        })
+    }, [page, chapter, manga.titulo, saveToLocalStorage])
 
     useEffect(() => {
-        if (manga._id === "") {
-            return navigate("/");
+        if (manga._id === '') {
+            navigate('/')
+            return
         }
-    }, [manga, navigate]);
+    }, [manga, navigate])
 
-    const handlePage = (event: "left" | "right") => {
-        if (event == "left") {
+    const handlePage = (event: 'left' | 'right') => {
+        if (event == 'left') {
             if (page <= 0) {
-                return;
+                return
             }
-            setPage(page - 1);
-            setIsOpenSelectChapter(false);
-            setIsOpenSelectPage(false);
+            setPage(page - 1)
+            setIsOpenSelectChapter(false)
+            setIsOpenSelectPage(false)
         }
-        if (event == "right") {
+        if (event == 'right') {
             if (page >= manga.capitulos[chapter].paginas.length - 1) {
-                return;
+                return
             }
-            setPage(page + 1);
-            setIsOpenSelectChapter(false);
-            setIsOpenSelectPage(false);
+            setPage(page + 1)
+            setIsOpenSelectChapter(false)
+            setIsOpenSelectPage(false)
         }
-    };
+    }
 
-    const handleChapter = (event: "left" | "right") => {
-        if (event == "left") {
+    const handleChapter = (event: 'left' | 'right') => {
+        if (event == 'left') {
             if (chapter <= 0) {
-                return;
+                return
             }
             if (chapter <= 1) {
-                saveToLocalStorage("entries", {
+                saveToLocalStorage('entries', {
                     chapter: 0,
                     page: 0,
                     titulo: manga.titulo,
-                });
+                })
             }
-            setChapter(chapter - 1);
-            setPage(0);
-            setIsOpenSelectChapter(false);
-            setIsOpenSelectPage(false);
+            setChapter(chapter - 1)
+            setPage(0)
+            setIsOpenSelectChapter(false)
+            setIsOpenSelectPage(false)
         }
-        if (event == "right") {
+        if (event == 'right') {
             if (chapter >= manga.capitulos.length - 1) {
-                return;
+                return
             }
-            setChapter(chapter + 1);
-            setPage(0);
-            setIsOpenSelectChapter(false);
-            setIsOpenSelectPage(false);
+            setChapter(chapter + 1)
+            setPage(0)
+            setIsOpenSelectChapter(false)
+            setIsOpenSelectPage(false)
         }
-    };
+    }
 
     const scrollToTop = () => {
         window.scrollTo({
             top: 150,
-            behavior: "instant",
-        });
-    };
+            behavior: 'instant',
+        })
+    }
 
     return (
         <main className="container-view">
@@ -149,35 +150,35 @@ function ViewMain() {
             <button
                 className="mode-view"
                 onClick={() => {
-                    setModeView(!modeView);
-                    if (modeView) saveReadingMode("vertical");
-                    else saveReadingMode("horizontal");
+                    setModeView(!modeView)
+                    if (modeView) saveReadingMode('vertical')
+                    else saveReadingMode('horizontal')
                 }}
             >
-                {!modeView ? "Leitura Horizontal" : "Leitura Vertical"}
+                {!modeView ? 'Leitura Horizontal' : 'Leitura Vertical'}
             </button>
             <div className="control-cap">
                 <button
                     className="control-cap-left"
                     onClick={() => {
-                        handleChapter("left");
+                        handleChapter('left')
                     }}
                 >
-                    {"<"}
+                    {'<'}
                 </button>
                 <div
                     className="control-cap-info"
                     onClick={() => {
-                        setIsOpenSelectChapter(!isOpenSelectChapter);
+                        setIsOpenSelectChapter(!isOpenSelectChapter)
                     }}
                 >{`CAP ${chapter + 1}`}</div>
                 <button
                     className="control-cap-right"
                     onClick={() => {
-                        handleChapter("right");
+                        handleChapter('right')
                     }}
                 >
-                    {">"}
+                    {'>'}
                 </button>
                 {isOpenSelectChapter && (
                     <div className="control-cap-content">
@@ -187,23 +188,23 @@ function ViewMain() {
                                     <div
                                         onClick={() => {
                                             if (mangaMap.numero - 1 <= 1) {
-                                                saveToLocalStorage("entries", {
+                                                saveToLocalStorage('entries', {
                                                     chapter: 0,
                                                     page: 0,
                                                     titulo: manga.titulo,
-                                                });
+                                                })
                                             }
 
-                                            setChapter(mangaMap.numero - 1);
-                                            setPage(0);
+                                            setChapter(mangaMap.numero - 1)
+                                            setPage(0)
                                             setIsOpenSelectChapter(
                                                 !isOpenSelectChapter
-                                            );
+                                            )
                                         }}
                                         className={
                                             chapter + 1 === mangaMap.numero
-                                                ? "selected"
-                                                : ""
+                                                ? 'selected'
+                                                : ''
                                         }
                                     >
                                         {`Cap. ${mangaMap.numero}`}
@@ -234,16 +235,16 @@ function ViewMain() {
                     <button
                         className="control-pag-left"
                         onClick={() => {
-                            handlePage("left");
-                            scrollToTop();
+                            handlePage('left')
+                            scrollToTop()
                         }}
                     >
-                        {"<"}
+                        {'<'}
                     </button>
                     <div
                         className="control-pag-info"
                         onClick={() => {
-                            setIsOpenSelectPage(!isOpenSelectPage);
+                            setIsOpenSelectPage(!isOpenSelectPage)
                         }}
                     >{`Pág ${page + 1} de ${
                         manga.capitulos[chapter]?.paginas.length
@@ -251,11 +252,11 @@ function ViewMain() {
                     <button
                         className="control-pag-right"
                         onClick={() => {
-                            handlePage("right");
-                            scrollToTop();
+                            handlePage('right')
+                            scrollToTop()
                         }}
                     >
-                        {">"}
+                        {'>'}
                     </button>
                     {isOpenSelectPage && (
                         <div className="control-pag-content">
@@ -265,17 +266,15 @@ function ViewMain() {
                                         <li key={mangaMap._id}>
                                             <div
                                                 onClick={() => {
-                                                    setPage(
-                                                        mangaMap.numero - 1
-                                                    );
+                                                    setPage(mangaMap.numero - 1)
                                                     setIsOpenSelectPage(
                                                         !isOpenSelectPage
-                                                    );
+                                                    )
                                                 }}
                                                 className={
                                                     page + 1 === mangaMap.numero
-                                                        ? "selected"
-                                                        : ""
+                                                        ? 'selected'
+                                                        : ''
                                                 }
                                             >
                                                 {`Pag. ${mangaMap.numero}`}
@@ -292,16 +291,16 @@ function ViewMain() {
             <button
                 className="proximo-capitulo"
                 onClick={() => {
-                    handleChapter("right");
+                    handleChapter('right')
                 }}
             >
                 {chapter >= manga.capitulos.length - 1
-                    ? "Capítulo Final"
-                    : "Próximo Capítulo"}
+                    ? 'Capítulo Final'
+                    : 'Próximo Capítulo'}
             </button>
             <div className="space"></div>
         </main>
-    );
+    )
 }
 
-export default ViewMain;
+export default ViewMain

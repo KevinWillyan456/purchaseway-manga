@@ -1,5 +1,5 @@
-import React from "react";
-import "./Loading.css";
+import React from 'react'
+import './Loading.css'
 
 const Loading: React.FC = () => {
     return (
@@ -7,7 +7,7 @@ const Loading: React.FC = () => {
             <div className="loading-spinner__circle"></div>
             <div className="loading-spinner__text">Aguarde...</div>
         </div>
-    );
-};
+    )
+}
 
-export default Loading;
+export default Loading

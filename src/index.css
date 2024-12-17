@@ -15,7 +15,7 @@ a {
     --color-secondary: #fff8bc;
 }
 body {
-    font-family: "Ubuntu", sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     background-color: var(--color-background);
 }
 body::-webkit-scrollbar {

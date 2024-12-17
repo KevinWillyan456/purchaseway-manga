@@ -1,38 +1,38 @@
-import { useEffect, useState } from "react";
-import Manga from "../manga/Manga";
-import "./HomeMain.css";
-import axios from "axios";
-import Error from "../loadingAndError/Error";
-import Loading from "../loadingAndError/Loading";
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import Error from '../loadingAndError/Error'
+import Loading from '../loadingAndError/Loading'
+import Manga from '../manga/Manga'
+import './HomeMain.css'
 
-const baseURL = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/manga`;
+const baseURL = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/manga`
 
 interface IPagina {
-    _id: string;
-    numero: number;
-    path: string;
+    _id: string
+    numero: number
+    path: string
 }
 
 interface ICapitulo {
-    _id: string;
-    numero: number;
-    paginas: IPagina[];
+    _id: string
+    numero: number
+    paginas: IPagina[]
 }
 
 export interface IManga {
-    _id: string;
-    capa: string;
-    genero: string;
-    titulo: string;
-    dataDeAdicao: Date;
-    capitulos: ICapitulo[];
+    _id: string
+    capa: string
+    genero: string
+    titulo: string
+    dataDeAdicao: Date
+    capitulos: ICapitulo[]
 }
 
 function Main() {
-    const [mangas, setMangas] = useState<IManga[]>([]);
-    const [error, setError] = useState<boolean>(false);
+    const [mangas, setMangas] = useState<IManga[]>([])
+    const [error, setError] = useState<boolean>(false)
 
-    const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
+    const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
 
     useEffect(() => {
         axios
@@ -40,10 +40,10 @@ function Main() {
                 headers: { Authorization: apiKey },
             })
             .then((response) => {
-                setMangas(response.data.mangas);
+                setMangas(response.data.mangas)
             })
-            .catch(() => setError(true));
-    }, [apiKey]);
+            .catch(() => setError(true))
+    }, [apiKey])
 
     return (
         <>
@@ -66,7 +66,7 @@ function Main() {
                 </section>
             </main>
         </>
-    );
+    )
 }
 
-export default Main;
+export default Main

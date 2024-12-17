@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
-import "./Manga.css";
-import { IManga } from "../homemain/HomeMain";
-import { useContext } from "react";
-import { MangaContext } from "../../contexts/mangaContext";
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { MangaContext } from '../../contexts/mangaContext'
+import { IManga } from '../homemain/HomeMain'
+import './Manga.css'
 
 function Manga(mangaProps: { manga: IManga }) {
     const { _id, capa, capitulos, dataDeAdicao, genero, titulo } =
-        mangaProps.manga;
+        mangaProps.manga
 
-    const { setManga } = useContext(MangaContext);
+    const { setManga } = useContext(MangaContext)
 
     return (
         <Link
@@ -25,12 +25,12 @@ function Manga(mangaProps: { manga: IManga }) {
                     dataDeAdicao: dataDeAdicao,
                     genero: genero,
                     titulo: titulo,
-                });
+                })
             }}
         >
             <div className="title">{titulo}</div>
         </Link>
-    );
+    )
 }
 
-export default Manga;
+export default Manga

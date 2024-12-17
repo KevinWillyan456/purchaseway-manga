@@ -1,6 +1,6 @@
-import Footer from "../components/footer/Footer";
-import Header from "../components/header/Header";
-import ViewMain from "../components/viewmain/ViewMain";
+import Footer from '../components/footer/Footer'
+import Header from '../components/header/Header'
+import ViewMain from '../components/viewmain/ViewMain'
 
 function View() {
     return (
@@ -9,7 +9,7 @@ function View() {
             <ViewMain />
             <Footer />
         </>
-    );
+    )
 }
 
-export default View;
+export default View
